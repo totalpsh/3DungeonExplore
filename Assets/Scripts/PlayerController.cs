@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,7 +18,7 @@ public class PlayerController : MonoBehaviour
     public float maxXLook;
     private float camCurXRot;
     public float lookSensitivity;
-    private float rotationSpeedDeg = 360f;
+    private float rotationSpeedDeg = 720f;
     private Vector2 mouseDelta;
 
     private Rigidbody _rigidbody;
@@ -87,14 +88,14 @@ public class PlayerController : MonoBehaviour
         //_rigidbody.velocity = dir;
     }
 
-    void CameraLook()
-    {
-        camCurXRot += mouseDelta.y * lookSensitivity;
-        camCurXRot = Mathf.Clamp(camCurXRot, minXLook, maxXLook);
-        cameraContainer.localEulerAngles = new Vector3(-camCurXRot, 0, 0);
+    //void CameraLook()
+    //{
+    //    camCurXRot += mouseDelta.y * lookSensitivity;
+    //    camCurXRot = Mathf.Clamp(camCurXRot, minXLook, maxXLook);
+    //    cameraContainer.localEulerAngles = new Vector3(-camCurXRot, 0, 0);
 
-        transform.eulerAngles += new Vector3(0, mouseDelta.x * lookSensitivity, 0);
-    }
+    //    transform.eulerAngles += new Vector3(0, mouseDelta.x * lookSensitivity, 0);
+    //}
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -110,7 +111,6 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        
         if(context.phase == InputActionPhase.Started && _isGrounded)
         {
             _rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);

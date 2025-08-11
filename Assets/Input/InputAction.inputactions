@@ -1,5 +1,5 @@
 {
-    "name": "Player",
+    "name": "InputAction",
     "maps": [
         {
             "name": "Player",
@@ -49,6 +49,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Consumable",
+                    "type": "Button",
+                    "id": "38c6f285-61c6-4aa3-a302-00d2351a8baa",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -148,6 +157,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1bbf9354-98da-41aa-8eb8-fb11447df82a",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Consumable",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9eba1642-194d-4f1e-8058-9699f8b62bd2",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Consumable",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

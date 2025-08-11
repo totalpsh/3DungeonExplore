@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,15 +6,16 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public PlayerController controller;
+    public PlayerCondition condition;
+
+    public ItemData itemdata;
+    public Action addItem;
 
     void Awake()
     {
-        controller = GetComponent<PlayerController>();
-    }
+        CharacterManager.Instance.Player = this;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        controller = GetComponent<PlayerController>();
+        condition = GetComponent<PlayerCondition>();
     }
 }
