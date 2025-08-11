@@ -18,6 +18,7 @@ public enum ConsumableType
 public class ItemDataConsumable
 {
     public ConsumableType type;
+    public float time;
     public float value;
 }
 

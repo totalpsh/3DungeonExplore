@@ -403,6 +403,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 186cb03a-8e8d-44de-bef6-e39d27c096cb
     m_ActionName: Player/Inventory[/Keyboard/tab]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UISkill, Assembly-CSharp
+        m_MethodName: OnUseKey
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 38c6f285-61c6-4aa3-a302-00d2351a8baa
+    m_ActionName: Player/Consumable[/Keyboard/1,/Keyboard/2]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -471,9 +487,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   checkRate: 0.05
   maxCheckDistance: 2
-  layerMask:
+  interactLayer:
     serializedVersion: 2
     m_Bits: 128
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 256
   _rigidbody: {fileID: 0}
   boxCollider: {fileID: 0}
   curInteractGameObject: {fileID: 0}

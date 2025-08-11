@@ -30,11 +30,11 @@ public class Condition : MonoBehaviour
 
     public void Add(float value)
     {
-        // 더해주기
+        currentValue = Mathf.Min(currentValue + value, maxValue);
     }
 
-    public void Sub(float value)
+    public void Subtract(float value)
     {
-        // 빼주기
+        currentValue = Mathf.Max(currentValue - value, 0);
     }
 }

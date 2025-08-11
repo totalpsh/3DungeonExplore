@@ -45,17 +45,20 @@ public class UISkill : MonoBehaviour
     {
         ItemData data = CharacterManager.Instance.Player.itemdata;
 
-        UISkillSlot emptySlot = GetEmptySlot();
-
-        if(emptySlot != null)
+        if (CharacterManager.Instance.Player.itemdata.type == ItemType.Consumable)
         {
-            emptySlot.item = data;
-            UpdateUI();
-            CharacterManager.Instance.Player.itemdata = null;
-            return;
-        }
+            UISkillSlot emptySlot = GetEmptySlot();
 
-        CharacterManager.Instance.Player.itemdata = null;
+            if (emptySlot != null)
+            {
+                emptySlot.item = data;
+                UpdateUI();
+                CharacterManager.Instance.Player.itemdata = null;
+                return;
+            }
+
+            CharacterManager.Instance.Player.itemdata = null;
+        }
     }
 
     void UpdateUI()
@@ -95,22 +98,40 @@ public class UISkill : MonoBehaviour
                         {
                             case ConsumableType.Speed:
                                 Debug.Log("속도증가");
-                                coroutine = StartCoroutine(SpeedUp(5f));
+                                coroutine = StartCoroutine(SpeedUp(slots[0].item.consumables[i].time));
                                 break;
                             case ConsumableType.Jump:
-                                Debug.Log("점프력 증가");
+                                coroutine = StartCoroutine(JumpPowerUp(slots[0].item.consumables[i].time));
                                 break;
                         }
                     }
                 }
 
                 slots[0].Clear();
-                UpdateUI();
             }
             else if (path == "/Keyboard/x")
             {
-                Debug.Log("Press x");
+                if (slots[1].item == null) return;
+
+                if (slots[1].item.type == ItemType.Consumable)
+                {
+                    for (int i = 0; i < slots[1].item.consumables.Length; i++)
+                    {
+                        switch (slots[1].item.consumables[i].type)
+                        {
+                            case ConsumableType.Speed:
+                                coroutine = StartCoroutine(SpeedUp(slots[1].item.consumables[i].time));
+                                break;
+                            case ConsumableType.Jump:
+                                coroutine = StartCoroutine(JumpPowerUp(slots[1].item.consumables[i].time));
+                                break;
+                        }
+                    }
+                }
+
+                slots[1].Clear();
             }
+            UpdateUI();
         }
     }
 
@@ -128,6 +149,23 @@ public class UISkill : MonoBehaviour
         }
 
         controller.moveSpeed = originalSpeed;
+        coroutine = null;
+    }
+
+    private IEnumerator JumpPowerUp(float time)
+    {
+        float originalJump = controller.jumpPower;
+        controller.jumpPower = originalJump * 2f;
+
+        float curTime = time;
+
+        while (curTime > 0)
+        {
+            curTime -= Time.deltaTime;
+            yield return null;
+        }
+
+        controller.jumpPower = originalJump;
         coroutine = null;
     }
 }

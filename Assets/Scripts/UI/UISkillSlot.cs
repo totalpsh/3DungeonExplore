@@ -29,8 +29,4 @@ public class UISkillSlot : MonoBehaviour
         if(text != null) text.text = string.Empty;
     }
 
-    public void OnUseButton()
-    {
-
-    }
 }

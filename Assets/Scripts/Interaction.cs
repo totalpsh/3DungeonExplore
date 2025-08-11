@@ -14,7 +14,8 @@ public class Interaction : MonoBehaviour
     public float checkRate = 0.05f;
     private float lastCheckTime;
     public float maxCheckDistance;
-    public LayerMask layerMask;
+    public LayerMask interactLayer;
+    public LayerMask wallLayer;
 
     // 3인칭 시점에서 사용할 Rigidbody
     public Rigidbody _rigidbody;
@@ -79,7 +80,7 @@ public class Interaction : MonoBehaviour
 
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, maxCheckDistance, layerMask))
+            if (Physics.Raycast(ray, out hit, maxCheckDistance, interactLayer))
             {
 
                 if (hit.collider.gameObject != curInteractGameObject)
@@ -95,6 +96,17 @@ public class Interaction : MonoBehaviour
                 curInteractable = null;
                 promptText.gameObject.SetActive(false);
             }
+
+            if(Physics.Raycast(ray, out hit, maxCheckDistance, wallLayer))
+            {
+                Debug.Log("오르기 가능!");
+
+            }
+            else
+            {
+
+            }
+
         }
     }
 

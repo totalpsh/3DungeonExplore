@@ -10,14 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc14e3e3b67848242936ecb41a221996, type: 3}
-  m_Name: SpeedUp
+  m_Name: DoubleJump
   m_EditorClassIdentifier: 
-  displayName: "\uC2A4\uD53C\uB4DC\uC5C5"
-  description: "\uC2E0\uB098\uAC8C \uB180\uC544\uBCF4\uC790\uACE0~"
-  type: 1
+  displayName: "\uB354\uBE14\uC810\uD504\uD329"
+  description: "\uC7A5\uCC29\uC2DC \uC810\uD504\uAC00 \uB450\uBC30~"
+  type: 0
   dropPrefab: {fileID: 0}
-  equipPrefab: {fileID: 6523925334941007370, guid: 9e85595abf3225442b76f5076fa3cd57, type: 3}
-  consumables:
-  - type: 0
-    time: 5
-    value: 3
+  equipPrefab: {fileID: 0}
+  consumables: []

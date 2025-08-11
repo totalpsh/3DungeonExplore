@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
 
     private bool _isGrounded;
 
+    private float useStamina = 10;
+
     private void Awake()
     {
         _camera = Camera.main;
@@ -113,7 +115,8 @@ public class PlayerController : MonoBehaviour
     {
         if(context.phase == InputActionPhase.Started && _isGrounded)
         {
-            _rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
+            if(CharacterManager.Instance.Player.condition.UseStamina(useStamina))
+                _rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
         }
     }
 }
