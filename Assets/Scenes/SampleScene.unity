@@ -711,6 +711,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 265252035}
   m_CullTransparentMesh: 1
+--- !u!114 &273609690 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5033283402661706817, guid: c1472137cbade5647a8555faf0418b7a, type: 3}
+  m_PrefabInstance: {fileID: 2730864573486943994}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4345f9afa66de445b148f0de300c665, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &398907333
 GameObject:
   m_ObjectHideFlags: 0
@@ -2998,6 +3009,26 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 963194227}
     - target: {fileID: 7178146145360316612, guid: c1472137cbade5647a8555faf0418b7a, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178146145360316612, guid: c1472137cbade5647a8555faf0418b7a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_ActionId
+      value: d682a254-3923-4a5a-8b3f-a51b22c2165e
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178146145360316612, guid: c1472137cbade5647a8555faf0418b7a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_ActionName
+      value: Player/Climb[/Keyboard/q]
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178146145360316612, guid: c1472137cbade5647a8555faf0418b7a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178146145360316612, guid: c1472137cbade5647a8555faf0418b7a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178146145360316612, guid: c1472137cbade5647a8555faf0418b7a, type: 3}
       propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1576522020}
@@ -3005,6 +3036,26 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1567791008}
+    - target: {fileID: 7178146145360316612, guid: c1472137cbade5647a8555faf0418b7a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 273609690}
+    - target: {fileID: 7178146145360316612, guid: c1472137cbade5647a8555faf0418b7a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178146145360316612, guid: c1472137cbade5647a8555faf0418b7a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClimbing
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178146145360316612, guid: c1472137cbade5647a8555faf0418b7a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178146145360316612, guid: c1472137cbade5647a8555faf0418b7a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8288890834172275640, guid: c1472137cbade5647a8555faf0418b7a, type: 3}
       propertyPath: m_Name
       value: Player

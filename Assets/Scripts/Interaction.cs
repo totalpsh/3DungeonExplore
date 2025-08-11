@@ -25,6 +25,7 @@ public class Interaction : MonoBehaviour
 
     public GameObject curInteractGameObject;
     private IInteractable curInteractable;
+    private PlayerController controller;
 
     public TextMeshProUGUI promptText;
     private Camera camera;
@@ -32,6 +33,7 @@ public class Interaction : MonoBehaviour
     private void Start()
     {
         camera = Camera.main;
+        controller = CharacterManager.Instance.Player.controller;
 
         boxCollider = GetComponentInChildren<BoxCollider>();
 
@@ -99,12 +101,12 @@ public class Interaction : MonoBehaviour
 
             if(Physics.Raycast(ray, out hit, maxCheckDistance, wallLayer))
             {
-                Debug.Log("오르기 가능!");
-
+                controller.canClimb = true;
+                controller.wallNormal = hit.normal;
             }
             else
             {
-
+                controller.canClimb = false;
             }
 
         }

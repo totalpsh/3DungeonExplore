@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
@@ -11,6 +12,9 @@ public class PlayerController : MonoBehaviour
     public float jumpPower;
     private Vector2 curMovementInput;
     public LayerMask grounLayerMask;
+    public bool isClimbing;
+    public bool canClimb;
+    public Vector3 wallNormal;
 
     [Header("Look")]
     public Transform cameraContainer;
@@ -48,7 +52,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Move();
+        if (isClimbing) Climbing();
+        else Move();
     }
 
     private void LateUpdate()
@@ -88,6 +93,16 @@ public class PlayerController : MonoBehaviour
         //dir.y = _rigidbody.velocity.y;
 
         //_rigidbody.velocity = dir;
+
+    }
+
+    void Climbing()
+    {
+        Vector3 upMove = transform.up * curMovementInput.y * moveSpeed;
+        Vector3 sideMove = Vector3.Cross(wallNormal, Vector3.up) * curMovementInput.x * moveSpeed;
+        Vector3 moveDir = upMove + sideMove;
+
+        _rigidbody.MovePosition(_rigidbody.position + moveDir * Time.fixedDeltaTime);
     }
 
     //void CameraLook()
@@ -113,10 +128,32 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if(context.phase == InputActionPhase.Started && _isGrounded)
+        if(context.phase == InputActionPhase.Started && _isGrounded && !isClimbing)
         {
             if(CharacterManager.Instance.Player.condition.UseStamina(useStamina))
+            {
                 _rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
+            }
+        }
+        else if(isClimbing)
+        {
+            StopClimbing();
         }
     }
+
+    public void OnClimbing(InputAction.CallbackContext context)
+    {
+        if(context.phase == InputActionPhase.Started && canClimb)
+        {
+            _rigidbody.useGravity = false;
+            isClimbing = true;
+        }
+    }
+
+    public void StopClimbing()
+    {
+        _rigidbody.useGravity = true;
+        isClimbing = false;
+    }
+
 }
