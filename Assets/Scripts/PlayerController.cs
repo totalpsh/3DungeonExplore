@@ -31,7 +31,8 @@ public class PlayerController : MonoBehaviour
 
     private bool _isGrounded;
 
-    private float useStamina = 10;
+    private float useJumpStamina = 10;
+    private float useClimbStamina = 0.5f;
 
     private void Awake()
     {
@@ -72,7 +73,7 @@ public class PlayerController : MonoBehaviour
 
         Vector3 moveDir = (camForward * curMovementInput.y + camRight * curMovementInput.x);
         bool hasInput = moveDir.sqrMagnitude > 0.0001f;
-        if (hasInput) { moveDir.Normalize(); }
+        if (hasInput) moveDir.Normalize(); 
 
         if (hasInput)
         {
@@ -82,9 +83,13 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector3 dir = _rigidbody.velocity;
-        Vector3 horizontal = hasInput ? moveDir * moveSpeed : Vector3.zero;
-        dir.x = horizontal.x;
-        dir.z = horizontal.z;
+
+        if (hasInput)
+        {
+            Vector3 horizontal = hasInput ? moveDir * moveSpeed : Vector3.zero;
+            dir.x = horizontal.x;
+            dir.z = horizontal.z;
+        }
 
         _rigidbody.velocity = dir;
 
@@ -98,11 +103,19 @@ public class PlayerController : MonoBehaviour
 
     void Climbing()
     {
-        Vector3 upMove = transform.up * curMovementInput.y * moveSpeed;
-        Vector3 sideMove = Vector3.Cross(wallNormal, Vector3.up) * curMovementInput.x * moveSpeed;
-        Vector3 moveDir = upMove + sideMove;
+        if (CharacterManager.Instance.Player.condition.UseStamina(useClimbStamina))
+        {
 
-        _rigidbody.MovePosition(_rigidbody.position + moveDir * Time.fixedDeltaTime);
+            Vector3 upMove = transform.up * curMovementInput.y * moveSpeed;
+            Vector3 sideMove = Vector3.Cross(wallNormal, Vector3.up) * curMovementInput.x * moveSpeed;
+            Vector3 moveDir = upMove + sideMove;
+
+            _rigidbody.MovePosition(_rigidbody.position + moveDir * Time.fixedDeltaTime);
+        }
+        else
+        {
+            StopClimbing();
+        }
     }
 
     //void CameraLook()
@@ -130,7 +143,7 @@ public class PlayerController : MonoBehaviour
     {
         if(context.phase == InputActionPhase.Started && _isGrounded && !isClimbing)
         {
-            if(CharacterManager.Instance.Player.condition.UseStamina(useStamina))
+            if(CharacterManager.Instance.Player.condition.UseStamina(useJumpStamina))
             {
                 _rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
             }

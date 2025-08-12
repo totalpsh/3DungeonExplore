@@ -107,6 +107,7 @@ public class Interaction : MonoBehaviour
             else
             {
                 controller.canClimb = false;
+
             }
 
         }
