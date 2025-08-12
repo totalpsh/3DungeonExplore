@@ -51,7 +51,7 @@ public class CameraController : MonoBehaviour
         pitch -= mouseDelta.y * pitchSpeed * Time.deltaTime;
         pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
 
-        // 4) 카메라 충돌 처리 (스프링암 느낌)
+        // 3) 카메라 충돌 처리 (스프링암 느낌)
         Quaternion rot = Quaternion.Euler(pitch, yaw, 0f);
         Vector3 desiredCamPos = transform.position - rot * Vector3.forward * distance;
 
