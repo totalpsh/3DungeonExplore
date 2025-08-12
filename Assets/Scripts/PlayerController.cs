@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     public bool isClimbing;
     public bool canClimb;
     public Vector3 wallNormal;
+    public bool canDoubleJump;
+    public int jumpCount;
 
     [Header("Look")]
     public Transform cameraContainer;
@@ -49,6 +51,11 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         _isGrounded = Physics.Raycast(transform.position, Vector3.down, 1.1f, grounLayerMask);
+        if(_isGrounded && canDoubleJump && jumpCount <= 0)
+        {
+            jumpCount = 1;
+        }
+
     }
     // Update is called once per frame
     void FixedUpdate()
@@ -141,11 +148,22 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if(context.phase == InputActionPhase.Started && _isGrounded && !isClimbing)
+        if(context.phase == InputActionPhase.Started  && !isClimbing)
         {
-            if(CharacterManager.Instance.Player.condition.UseStamina(useJumpStamina))
+            if (_isGrounded)
             {
-                _rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
+                if (CharacterManager.Instance.Player.condition.UseStamina(useJumpStamina))
+                {
+                    _rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
+                }
+            }
+            if (!_isGrounded  && canDoubleJump && jumpCount > 0)
+            {
+                if (CharacterManager.Instance.Player.condition.UseStamina(useJumpStamina))
+                {
+                    _rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
+                    jumpCount--;
+                }
             }
         }
         else if(isClimbing)
@@ -169,4 +187,14 @@ public class PlayerController : MonoBehaviour
         isClimbing = false;
     }
 
+    public void DoubleJumpStart()
+    {
+        canDoubleJump = true;
+        jumpCount = 1;
+    }
+
+    public void DoubleJumpStop()
+    {
+        canDoubleJump = false;
+    }
 }

@@ -11,7 +11,8 @@ public enum ItemType
 public enum ConsumableType
 {
     Speed,
-    Jump
+    Jump,
+    DoubleJump
 }
 
 [Serializable]

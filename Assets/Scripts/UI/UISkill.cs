@@ -103,6 +103,9 @@ public class UISkill : MonoBehaviour
                             case ConsumableType.Jump:
                                 coroutine = StartCoroutine(JumpPowerUp(slots[0].item.consumables[i].time));
                                 break;
+                            case ConsumableType.DoubleJump:
+                                coroutine = StartCoroutine(DoubleJump(slots[0].item.consumables[i].time));
+                                break;
                         }
                     }
                 }
@@ -124,6 +127,9 @@ public class UISkill : MonoBehaviour
                                 break;
                             case ConsumableType.Jump:
                                 coroutine = StartCoroutine(JumpPowerUp(slots[1].item.consumables[i].time));
+                                break;
+                            case ConsumableType.DoubleJump:
+                                coroutine = StartCoroutine(DoubleJump(slots[1].item.consumables[i].time));
                                 break;
                         }
                     }
@@ -167,5 +173,20 @@ public class UISkill : MonoBehaviour
 
         controller.jumpPower = originalJump;
         coroutine = null;
+    }
+
+    private IEnumerator DoubleJump(float time)
+    {
+        controller.DoubleJumpStart();
+
+        float curTime = time;
+
+        while (curTime > 0)
+        {
+            curTime -= Time.deltaTime;
+
+            yield return null;
+        }
+        controller.DoubleJumpStop();
     }
 }

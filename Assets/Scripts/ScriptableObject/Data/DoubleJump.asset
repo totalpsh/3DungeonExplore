@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: "\uB354\uBE14\uC810\uD504\uD329"
   description: "\uC7A5\uCC29\uC2DC \uC810\uD504\uAC00 \uB450\uBC30~"
-  type: 0
+  type: 1
   dropPrefab: {fileID: 0}
   equipPrefab: {fileID: 0}
-  consumables: []
+  consumables:
+  - type: 2
+    time: 5
+    value: 0
