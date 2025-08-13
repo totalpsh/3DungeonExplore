@@ -50,24 +50,6 @@ public class MovingPlatform : MonoBehaviour
 
             if (startPos.x <= curPos.position.x) isRight = true;
         }
-
-
-        //float step = movingSpeed * Time.fixedDeltaTime;
-
-        //Vector3 pos = _rigidbody.position;
-
-        //if (isRight)
-        //{
-        //    pos.x -= step;
-        //    if (startPos.x - pos.x >= maxMovingDistance) isRight = false;
-        //}
-        //else
-        //{
-        //    pos.x += step;
-        //    if (startPos.x <= pos.x) isRight = true;
-        //}
-
-        //_rigidbody.MovePosition(pos);
     }
 
     private void OnCollisionEnter(Collision collision)
