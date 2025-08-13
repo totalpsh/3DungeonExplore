@@ -15,7 +15,6 @@ public class UISkill : MonoBehaviour
 
     private Coroutine coroutine;
 
-    // Start is called before the first frame update
     void Start()
     {
         controller = CharacterManager.Instance.Player.GetComponent<PlayerController>();
